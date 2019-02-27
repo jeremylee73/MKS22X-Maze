@@ -26,6 +26,21 @@ public class Maze{
       }
       maze = new char[numRows][numCols];
       fillMaze(filename, maze);
+      int foundE = 0;
+      int foundS = 0;
+      for (int i=0; i<maze.length; i++){
+        for (int j=0; j<maze[i].length; j++){
+          if (maze[i][j] == 'E'){
+            foundE++;
+          }
+          if (maze[i][j] == 'S'){
+            foundS++;
+          }
+        }
+      }
+      if (foundE != 1 || foundS != 1){
+        throw new IllegalStateException();
+      }
     }
 
     private void fillMaze(String filename, char[][] maze) throws FileNotFoundException{
