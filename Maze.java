@@ -81,7 +81,16 @@ public class Maze{
      It should look like the text file with some characters replaced.
     */
     public String toString(){
-            return "WRITE THIS METHOD";
+      String ans = "";
+      for (int i=0; i<maze.length; i++){
+        for (int j=0; j<maze[i].length; j++){
+          ans += maze[i][j];
+        }
+        if (i != maze.length - 1){
+          ans += "\n";
+        }
+      }
+      return ans;
     }
 
 
