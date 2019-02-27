@@ -25,9 +25,21 @@ public class Maze{
           numCols = line.length();
       }
       maze = new char[numRows][numCols];
+      fillMaze(filename, maze);
     }
 
-    
+    private void fillMaze(String filename, char[][] maze) throws FileNotFoundException{
+      int index = 0;
+      File maze1 = new File("Maze1.txt");
+      Scanner inf = new Scanner(maze1);
+      while (inf.hasNextLine()){
+          String line = inf.nextLine();
+          for (int c=0; c<line.length(); c++){
+            maze[index][c] = line.charAt(c);
+          }
+          index++;
+      }
+    }
 
     private void wait(int millis){
          try {

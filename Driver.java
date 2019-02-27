@@ -14,6 +14,7 @@ public class Driver{
         numCols = line.length();
         System.out.println(line);
       }
+      Maze testMaze = new Maze("Maze.txt");
     } catch (FileNotFoundException e){
       System.out.println("File not found");
     }
