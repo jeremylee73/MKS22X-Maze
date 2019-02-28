@@ -58,11 +58,11 @@ public class Maze{
     }
 
     private void wait(int millis){
-         try {
-             Thread.sleep(millis);
-         }
-         catch (InterruptedException e) {
-         }
+       try {
+           Thread.sleep(millis);
+       }
+       catch (InterruptedException e) {
+       }
      }
 
     public void setAnimate(boolean b){
@@ -140,13 +140,13 @@ public class Maze{
       }
       numAt++;
       maze[row][col] = '@';
-      if (maze[row-1][col] == ' '){
+      if (maze[row-1][col] == ' ' || maze[row-1][col] == 'E'){
         return solve(row-1, col);
-      } else if (maze[row+1][col] == ' '){
+      } else if (maze[row+1][col] == ' ' || maze[row+1][col] == 'E'){
         return solve(row+1, col);
-      } else if (maze[row][col-1] == ' '){
+      } else if (maze[row][col-1] == ' ' || maze[row][col-1] == 'E'){
         return solve(row, col-1);
-      } else if (maze[row][col+1] == ' '){
+      } else if (maze[row][col+1] == ' ' || maze[row][col+1] == 'E'){
         return solve(row, col+1);
       } else {
         maze[row][col] = '.';
