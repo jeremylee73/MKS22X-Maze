@@ -5,7 +5,7 @@ public class Maze{
     private boolean animate;//false by default
     private int numRows = 0;
     private int numCols = 0;
-    private int numAt = 0;
+    private int numAt = 1;
 
     /*Constructor loads a maze text file, and sets animate to false by default.
       1. The file contains a rectangular ascii maze, made with the following 4 characters:
@@ -127,7 +127,6 @@ public class Maze{
         All visited spots that are part of the solution are changed to '@'
     */
     private int solve(int row, int col){ //you can add more parameters since this is private
-
       //automatic animation! You are welcome.
       if(animate){
           clearTerminal();
@@ -139,21 +138,19 @@ public class Maze{
       if (maze[row][col] == 'E'){
         return numAt;
       }
+      numAt++;
       maze[row][col] = '@';
       if (maze[row-1][col] == ' '){
-        numAt++;
         return solve(row-1, col);
       } else if (maze[row+1][col] == ' '){
-        numAt++;
         return solve(row+1, col);
       } else if (maze[row][col-1] == ' '){
-        numAt++;
         return solve(row, col-1);
       } else if (maze[row][col+1] == ' '){
-        numAt++;
         return solve(row, col+1);
       } else {
         maze[row][col] = '.';
+        numAt--;
         if (maze[row-1][col] == '@'){
           return solve(row-1, col);
         } else if (maze[row+1][col] == '@'){
