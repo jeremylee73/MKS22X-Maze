@@ -3,6 +3,9 @@ import java.io.*;
 public class Maze{
     private char[][]maze;
     private boolean animate;//false by default
+    private int numRows = 0;
+    private int numCols = 0;
+    private int numAt = 0;
 
     /*Constructor loads a maze text file, and sets animate to false by default.
       1. The file contains a rectangular ascii maze, made with the following 4 characters:
@@ -15,8 +18,6 @@ public class Maze{
          throw a FileNotFoundException or IllegalStateException
     */
     public Maze(String filename) throws FileNotFoundException{
-      int numRows = 0;
-      int numCols = 0;
       File maze1 = new File("Maze1.txt");
       Scanner inf = new Scanner(maze1);
       while (inf.hasNextLine()){
@@ -106,7 +107,7 @@ public class Maze{
           }
         }
         //erase the S
-        maze[locx][locy] = ' ';
+        maze[locx][locy] = '@';
         //and start solving at the location of the s.
         //return solve(???,???);
         return solve(locx, locy);
@@ -127,14 +128,43 @@ public class Maze{
     */
     private int solve(int row, int col){ //you can add more parameters since this is private
 
-        //automatic animation! You are welcome.
-        if(animate){
-            clearTerminal();
-            System.out.println(this);
-            wait(20);
-        }
+      //automatic animation! You are welcome.
+      if(animate){
+          clearTerminal();
+          System.out.println(this);
+          wait(20);
+      }
 
-        //COMPLETE SOLVE
-        return -1; //so it compiles
+      //COMPLETE SOLVE
+      if (maze[row][col] == 'E'){
+        return numAt;
+      }
+      maze[row][col] = '@';
+      if (maze[row-1][col] == ' '){
+        numAt++;
+        return solve(row-1, col);
+      } else if (maze[row+1][col] == ' '){
+        numAt++;
+        return solve(row+1, col);
+      } else if (maze[row][col-1] == ' '){
+        numAt++;
+        return solve(row, col-1);
+      } else if (maze[row][col+1] == ' '){
+        numAt++;
+        return solve(row, col+1);
+      } else {
+        maze[row][col] = '.';
+        if (maze[row-1][col] == '@'){
+          return solve(row-1, col);
+        } else if (maze[row+1][col] == '@'){
+          return solve(row+1, col);
+        } else if (maze[row][col-1] == '@'){
+          return solve(row, col-1);
+        } else if (maze[row][col+1] == '@'){
+          return solve(row, col+1);
+        } else {
+          return -1;
+        }
+      }
     }
 }
