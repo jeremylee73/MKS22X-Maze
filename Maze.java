@@ -73,10 +73,6 @@ public class Maze{
         System.out.println("\033[2J\033[1;1H");
     }
 
-
-
-
-
    /*Return the string that represents the maze.
      It should look like the text file with some characters replaced.
     */
@@ -93,19 +89,27 @@ public class Maze{
       return ans;
     }
 
-
     /*Wrapper Solve Function returns the helper function
       Note the helper function has the same name, but different parameters.
       Since the constructor exits when the file is not found or is missing an E or S, we can assume it exists.
     */
     public int solve(){
-            //find the location of the S.
-
-            //erase the S
-
-            //and start solving at the location of the s.
-            //return solve(???,???);
-            return 0;
+        //find the location of the S.
+        int locx = 0;
+        int locy = 0;
+        for (int i=0; i<maze.length; i++){
+          for (int j=0; j<maze[i].length; j++){
+            if (maze[i][j] == 'S'){
+              locx = i;
+              locy = j;
+            }
+          }
+        }
+        //erase the S
+        maze[locx][locy] = ' ';
+        //and start solving at the location of the s.
+        //return solve(???,???);
+        return solve(locx, locy);
     }
 
     /*
