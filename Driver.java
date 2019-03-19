@@ -1,14 +1,17 @@
-import java.io.File;
+import java.io.IOException;
 import java.io.FileNotFoundException;
-import java.util.Scanner;
 public class Driver{
   public static void main(String args[]){
-    try {
-      Maze maze1 = new Maze("Maze.txt");
-      maze1.setAnimate(true);
-      System.out.println(maze1.solve());
-    } catch (FileNotFoundException e){
-      System.out.println("File Not Found");
+    String filename = "data1.dat";
+    try{
+      Maze f;
+      f = new Maze(filename);//true animates the maze.
+
+      f.setAnimate(true);
+      f.solve();
+      System.out.println(f);
+    }catch(FileNotFoundException e){
+      System.out.println("Invalid filename: "+filename);
     }
   }
 }

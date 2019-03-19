@@ -18,7 +18,7 @@ public class Maze{
          throw a FileNotFoundException or IllegalStateException
     */
     public Maze(String filename) throws FileNotFoundException{
-      File maze1 = new File("Maze1.txt");
+      File maze1 = new File(filename);
       Scanner inf = new Scanner(maze1);
       while (inf.hasNextLine()){
           String line = inf.nextLine();
